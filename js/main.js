@@ -15,7 +15,10 @@ btnGeneratorInput.addEventListener("click", function () {
     //Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
     const numberBlockGenerator = numberBlockGeneratorInput.value;
 
+    //Math.sqrt calcola la radice
+    //in questo caso Math.sqrt calcola la radice del numero che metti nella select
     const BlockGenerator = Math.sqrt(numberBlockGenerator);
+
     //Al click del btn aggiungi quello che viene dopo
     containerFlowers.innerHTML = "";
 
@@ -26,7 +29,7 @@ btnGeneratorInput.addEventListener("click", function () {
         //genererà i div virtuali.
         const boxFlowers = document.createElement("div");
 
-        //viene data la classe 
+        //viene data la classe creata nel css
         boxFlowers.classList.add("box-flowers");
 
         //stampa nel boxFlowers tutte le "i" che sono tutti i numeri
