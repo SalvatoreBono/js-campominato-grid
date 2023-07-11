@@ -7,23 +7,42 @@ Ci saranno quindi 10 caselle per ognuna delle 10 righe.
 Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
  */
 const btnGeneratorInput = document.getElementById("generator");
-const containerFlowers = document.querySelector(".container-flowers")
+const containerFlowers = document.querySelector(".container-flowers");
+const numberBlockGeneratorInput = document.getElementById("number-block");
+
 //L’utente clicca su un bottone
 btnGeneratorInput.addEventListener("click", function () {
+    //Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
+    const numberBlockGenerator = numberBlockGeneratorInput.value;
+
+    const BlockGenerator = Math.sqrt(numberBlockGenerator);
+    //Al click del btn aggiungi quello che viene dopo
     containerFlowers.innerHTML = "";
+
     containerFlowers.classList.add("d-flex");
-    //Ogni cella ha un numero progressivo, da 1 a 100.
-    for (let i = 1; i <= 100; i++) {
-        //genererà una griglia di gioco quadrata.
+    //Ogni cella ha un numero progressivo, dato dalla select "numberBlockGenerator".
+    for (let i = 1; i <= numberBlockGenerator; i++) {
+
+        //genererà i div virtuali.
         const boxFlowers = document.createElement("div");
-        boxFlowers.classList.add("box-flowers")
+
+        //viene data la classe 
+        boxFlowers.classList.add("box-flowers");
+
+        //stampa nel boxFlowers tutte le "i" che sono tutti i numeri
         boxFlowers.innerHTML = i;
+
+        //al boxFlowers dare un flex basiss con un "calc 100% / la radice dei numeri generati"
+        boxFlowers.style.flexBasis = `calc(100% / ${BlockGenerator})`;
+
+        //collegare i div creati virtualmente
         containerFlowers.append(boxFlowers);
+
         boxFlowers.addEventListener("click", function () {
             //Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro
             boxFlowers.classList.toggle("bg-primary");
             // emetto un messaggio in console con il numero della cella cliccata.
-            console.log(i)
+            console.log(i);
         })
     }
 })
